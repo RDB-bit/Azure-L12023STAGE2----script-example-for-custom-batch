@@ -1,0 +1,152 @@
+{
+   "on_cloud": 
+   {
+        "nameAccount": "motorcadedevdata",
+        "keyAccount": "6FSTluURGFXNrGzGpBKia/KGKKDFsG3S/LUbP2N+2w4xY2wUfSC4HExvnoR4NRISBWxta0WksxDE+AStGC1lYg==",
+        "protocolDefaultEndpoints": "https",
+        "suffixEndpoints" : "EndpointSuffix=core.windows.net",
+        "conn_string_BlobStorage" : "DefaultEndpointsProtocol=https;AccountName=motorcadedevdata;AccountKey=6FSTluURGFXNrGzGpBKia/KGKKDFsG3S/LUbP2N+2w4xY2wUfSC4HExvnoR4NRISBWxta0WksxDE+AStGC1lYg==;EndpointSuffix=core.windows.net",
+        "conn_string_SQLAuth": "Driver={ODBC Driver 17 for SQL Server};Server=tcp:motorcade.database.windows.net,1433;Database=Motorcade;Uid=motorcade_user;Pwd=Qwertyuiop@098;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=120;",
+        "containerRawDataRead" : "data-raw", 
+        "containerRawDataError" : "data-raw-error",
+        "containerRawDataProcessed" : "data-ready",
+        "containerReadyDataError" :"data-ready-error",
+        "containerReadyDataProcessed" : "data-ready-processed", 
+        "containerReadyDataOutput": "data-powerbi"
+   },
+   
+   "on_prem": 
+   {
+        "conn_string_SQLAuth": "DRIVER=ODBC Driver 17 for SQL Server; SERVER=TRL6271L\\SQLEXPRESS; DATABASE=VAME.02;UID=VAME_login; PWD=Qwertyuiop@098;Integrated Security=True;",
+        "containerRawDataProcessed" : "C:\\Users\\rdhammi\\OneDrive - TRL Limited\\Projects\\12. Motorcade\\2. Data\\2. DataConditioned",
+        "containerReadyDataToCloud" : "C:\\Users\\rdhammi\\OneDrive - TRL Limited\\Projects\\12. Motorcade\\2. Data\\3. DataMovedToCloud"
+    },
+
+    "metadata_client":
+    {
+        "data_type" : "file",
+        "file_format" : "csv",
+        "data_granularity " : 1,
+        "date_format" : "%H:%M:%S",
+        "date_trial_start" : "10.01.2022",
+        "date_trial_end" : "10.05.2023"
+    },
+
+    "calculation": {
+
+        "threshold" : {
+
+            "acceleration_m/s2": 1,
+            "deceleration_m/s2": -0.88,
+            "altitude_m" : 1.5,
+            "distance_m" : 30,
+            "speed_moving_m/s" : 1.2,
+            "acceleration_moving_m/s2" : 0,
+            "distance_threshold_m" : 1000,
+            "time_driving_threshold_s": 1800,
+            "harsh_acceleration" : 1,
+            "harsh_deceleration" : -0.88
+
+        },
+
+        "unit_conversion" : {
+
+            "km_to_m" :	1000,
+            "m_to_km" : 0.001,
+            "h_to_s" : 3600,
+            "s_to_h" :	0.000277778,
+            "m_per_s_to_km_per_h" : 3.6,
+            "km_per_h_to_m_per_s" :	0.277778,
+            "kg_to_tonne" : 0.001,
+            "tonne_to_kg" : 1000,
+            "kg_to_g" : 1000,
+            "g_to_kg" : 0.001,
+            "Joules_to_kWh" : 2.77778E-07,
+            "Ws_to_kWh"	: 2.77778E-07
+        }, 
+
+        "emissions" : {
+
+            "Hydrogen" : {
+
+                "energy_density" : 33.3,
+                "unit_energy_density" : "kWh per kg",
+                "cost_per_unit" : 1200,
+                "unit_cost" : "pence per Kg",
+                "source" : "off-site electrolyser road tanker delivery",
+                "source_emission": "WTW",
+                "unit_emission" : "kgCO2e per Kg",
+                "division_factor" : 0.576
+            }, 
+
+            "Electric" : {
+
+                "energy_density" :  "NULL",
+                "unit_energy_density" : "NULL",
+                "cost_per_unit" : 18.9,
+                "unit_cost" : "pence per kWh",
+                "source" : "grid",
+                "source_emission": "WTW",
+                "unit_emission" : "kgCO2e per kWh",
+                "division_factor" : 0.2913
+            },
+
+            "Diesel" : {
+
+                "energy_density" :  9.98,
+                "unit_energy_density" : "kWh per litre",
+                "cost_per_unit" : 125,
+                "unit_cost" : "pence per litre",
+                "source" : "NULL",
+                "source_emission": "WTW",
+                "unit_emission" : "kgCO2e per litre",
+                "division_factor" : 3.1999
+            }
+
+        }
+
+    },
+
+    "columns" : {
+
+        "data_input_to_pipeline" : ["driver_id", "vehicle_id", "weight_vehicle_gross (tonnes)", "weight_passengers (tonnes)", "year (yyyy)", "month (text)", 
+        "date (dd)", "time (hh:mm:ss:000000)",	"refuelling_start (dd/mm/yyy hh:mm:ss)", "refuelling_end (dd/mm/yyy hh:mm:ss)", "charging_start (dd/mm/yyy hh:mm:ss)", 
+        "charging_end (dd/mm/yyy hh:mm:ss)", "latitude", "longitude", "easting", "northing", "altitude (m)", "distance_travelled (m)", "speed (m/s)", 
+        "acceleration (m/s2)",	"time_engine_on (s)", "time_driving (s)", "time_idling (s)", "temp_env (celcius)", "temp_fuelcell (celcius)", "temp_battery (celcius)", 
+        "fuel_consumed", "temp_tank_1 (celcius)", "temp_tank_2 (celcius)", "temp_tank_3 (celcius)", "temp_tank_4 (celcius)", "pressure_tank_1 (bar)", 
+        "pressure_tank_2 (bar)", "pressure_tank_3 (bar)", "pressure_tank_4 (bar)", "current_fuelcell", "voltage_fuelcell",	"current VMS_1", "voltage VMS_1",
+        "SoC VMS_1", "current_BMS_1", "voltage_BMS_1", 	"SoC_BMS_1", "current_BMS_2", "voltage_BMS_2", "SoC_BMS_2", "current_BMS_3", "voltage_BMS_3", 
+        "SoC_BMS_3", "current_BMS_4", "voltage_BMS_4", "SoC_BMS_4",	"energy_from_fuelcell (kWh)", "energy_drive (kWh)", "energy_traction (kWh)", "energy_regen (kWh)", 
+        "energy_to_battery (kWh)", "energy_from_battery (kWh)", "energy_from_grid (kWh)", "energy_consumption_plugin (kWh)", "energy_consumption_ac (kWh)", 
+        "energy_consumption_refrigeration (kWh)", "energy_consumption_other (kWh)", "position_ignition_switch", "position_pedal_brake", "position_pedal_throttle",	
+        "harsh_brake", "harsh_acceleration"],
+
+
+        "data_trip_summary" : ["date","month", "driver_id","vehicle_id","vehicle_type","fuel_type","model", "fuelcell_type","capacity_tank","capacity_battery","tech1","tech2","tech3",
+        "tech4","tech5","fuel_consumed_unit_per_trip","fuel_consumed_avg_unit_per_km","fuel_consumed_unit_per_100_km","temp_env_total_celcius","temp_env_avg_celcius",
+        "temp_env_min_celcius","temp_env_max_celcius", "temp_fuel_cell_celcius","temp_battery_celcius", "passenger_max","weight_vehicle_rated_max_kg","weight_vehicle_unladen_kg",
+        "weight_gross_total_kg","weight_gross_avg_kg","weight_gross_tonne_km","weight_gross_min_kg","weight_gross_max_kg", "weight_load_total_kg","weight_load_avg_kg",
+        "weight_load_tonne_km","weight_load_min_kg","weight_load_max_kg","SoC_initial","SoC_final","time_engine_on_s","time_idling_s","time_driving_s","distance_travelled_m",
+        "distance_travelled_tacho_m","ascending_m","ascending_avg_m","ascending_max_m","ascending_min_m","descending_m","descending_avg_m","descending_max_m","descending_min_m",
+        "speed_avg_m_per_s","speed_max_m_per_s","speed_min_m_per_s","energy_road_total_kWh","energy_pos_kWh","energy_neg_kWh","energy_pos_kWh_per_km","energy_neg_kWh_per_km",
+        "energy_fuel_kWh_per_km","energy_regenerative_total_kWh","energy_regen_to_traction_percentage","energy_pos_and_regen_difference_kWh","energy_theoretical_traction_kWh",
+        "aero_speed_m2_per_s2","aero_speed_m_per_s","characteristic_acc_m_per_s2","kinetic_intensity_per_m", "kinetic_intensity_per_km", "drive_cycle","duty_cycle","energy_equivalent_kWh",
+        "energy_avg_equivalent_kWh_per_km","energy_from_fuel_cell_kWh","energy_from_fuel_cell_VC_kWh","efficiency_fuel_cell","energy_losses_fuel_cell_kWh","energy_drive_consumed_kWh",
+        "energy_regen_from_motor_kWh","energy_net_traction_kWh","efficiency_regen","energy_available_fuel_and_grid_kWh","energy_to_battery_kWh","energy_from_grid_kWh",
+        "energy_from_battery_kWh","energy_available_fuelcell_and_grid_kWh","energy_ac_consumption_kWh","energy_refrigerator_consumption_kWh","energy_other_consumption_kWh",
+        "energy_consumed_total_kWh","net_traction_efficiency_FCandGrid","net_traction_efficiency_FromConsumption","energy_needed_total_kWh","battery_and_power_system_losses",
+        "cost_fuel_p","cost_grid_p","harsh_braking_events","harsh_accelerations_events","WTW_fuel_kg","WTW_grid_kg","WTW_fuel_avg_CO2_kg_per_km","WTW_grid_avg_CO2_kg_per_km",
+        "gross_CO2_per_tonne_km","load_CO2_per_tonne_km"],
+
+        "data_trial_summary" : ["start_trial", "end_trial", "distance_total_km", "distance_tacho_total_km", "distance_max_km", "distance_min_km", "days_operational", 
+        "days_trip", "days_not_trip", "hours_driving_h", "hours_idling_h", "speed_avg_km_per_h", "speed_max_km_per_h", "speed_min_km_per_h", "load_avg_tonne", 
+        "load_max_tonne", "load_min_tonne", "temp_avg_env_celcius", "temp_max_env_celcius", "temp_min_env_celcius", "fuel_consumed_unit", "fuel_consumed_avg_unit_per_km", 
+        "fuel_consumed_avg_unit_per_100km", "energy_equivalent_kWh", "energy_from_fuel_cell_kWh", "fuel_cell_efficiency", "energy_from_grid_kWh", "energy_from_fuel_and_grid_kWh",
+        "energy_from_fuel_and_grid_avg_kWh_per_km", "energy_drive_consumed_kWh", "energy_regen_from_motor_kWh",  "efficiency_regen", "energy_net_traction_kWh",
+        "energy_ac_consumption_kWh", "energy_refrigerator_consumption_kWh", "energy_other_consumption_kWh", "energy_consumed_total_kWh", "energy_net_traction_proportion_kWh", 
+        "energy_ac_consumption_proportion_kWh", "energy_refrigerator_proportion_consumption_kWh", "energy_other_consumption_proportion_kWh", "kinetic_intensity_avg_per_km", 
+        "duty_cycle", "cost_fuel_p", "cost_grid_p", "cost_total_p", "cost_avg_p_per_km", "WTW_fuel_g", "WTW_grid_g", "WTW_total_g", "WTW_total_g_per_km", "WTW_fuel_proportion", 
+        "WTW_grid_proportion", "CO2_tonne_km"]
+    }
+
+}
